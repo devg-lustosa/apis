@@ -36,7 +36,7 @@ export const POSES = [
   { secao:5, p:0 },
   // 3ª dobra (anatomia): centralizada, vista de cima, e se desmonta com o scroll
   { secao:6, p:0, x:0, y:.14, s:.38, yaw:-.35, tilt:.55, lift:.3, shadow:.3, explode:0,
-    mobile:{ x:0, y:-.1, s:.58, yaw:-.35, tilt:.55 } },
+    mobile:{ x:0, y:.1, s:.58, yaw:-.35, tilt:.55 } },
   { secao:7, p:.35, explode:1 },
   { secao:8, p:0 },
   // 4ª dobra (onde voa): se remonta, encolhe e voa ao longo da linha do tempo, embaixo
