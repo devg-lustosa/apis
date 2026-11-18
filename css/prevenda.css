@@ -1,0 +1,60 @@
+/* =====================================================================
+   5ª DOBRA · PRÉ-VENDA · flor 3D à esquerda, kits e preço à direita
+   ===================================================================== */
+
+.preco{ position:relative; z-index:10; height:200vh; }
+.preco .pin{ display:grid; grid-template-columns:1fr 1fr; }
+.pr-esq{ position:relative; color:#fff; }                       /* transparente: mostra o fundo amarelo animado */
+.pr-titulo{ position:absolute; left:calc(14px + 2.4vw); top:calc(14px + 92px); right:4vw; }
+.pr-titulo h2{ font-family:var(--display); font-weight:800; font-size:min(4.8vw, 8.6vh); line-height:.92; letter-spacing:-.05em; max-width:9.5em;
+               text-shadow:0 2px 0 rgba(120,60,0,.06), 0 18px 44px rgba(150,75,0,.26); }
+.pr-titulo h2 em{ font-style:normal; color:var(--tinta); text-shadow:none; }
+.pr-titulo p{ max-width:300px; margin-top:16px; font-size:14px; line-height:1.5; font-weight:500; text-shadow:0 1px 10px rgba(150,75,0,.25); }
+#pad{ position:absolute; left:14%; right:6%; top:50%; height:28%; pointer-events:none; }
+.pr-dir{ position:relative; background:#fff; color:var(--tinta); display:flex; flex-direction:column; justify-content:center; gap:clamp(10px, 2.1vh, 22px);
+         padding:calc(14px + 82px) calc(14px + 3vw) calc(14px + 2.5vh) 4vw; box-shadow:-30px 0 60px -40px rgba(120,60,0,.35); }
+.pr-dir .kicker{ font-family:var(--mono); font-size:10.5px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--mel-forte); }
+.pr-dir h2{ font-family:var(--display); font-weight:700; font-size:min(3.4vw, 6.2vh); letter-spacing:-.04em; line-height:1; margin-top:-6px; }
+.kits{ display:flex; flex-direction:column; gap:8px; }
+.kit{ position:relative; display:flex; align-items:center; justify-content:space-between; gap:16px; width:100%; text-align:left; padding:clamp(9px, 1.6vh, 15px) 18px;
+      border:1px solid rgba(23,20,15,.14); border-radius:4px; background:#fff; transition:border-color .2s, box-shadow .2s, background .2s; }
+.kit:hover{ border-color:rgba(23,20,15,.35); }
+.kit.on{ border-color:var(--tinta); box-shadow:inset 0 0 0 1px var(--tinta); background:#fffaf0; }
+.kit b{ display:block; font-size:15px; font-weight:600; }
+.kit small{ display:block; margin-top:3px; font-size:12px; color:#6b6355; }
+.kit > span{ font-family:var(--mono); font-size:13.5px; font-weight:600; white-space:nowrap; }
+.selo-kit{ position:absolute; right:-1px; bottom:-9px; padding:3px 7px; background:var(--tinta); color:#fff; font-style:normal; font-family:var(--mono); font-size:9px; letter-spacing:.14em; text-transform:uppercase; }
+.parcela{ border-top:1px solid rgba(23,20,15,.1); padding-top:clamp(8px, 1.6vh, 16px); }
+.parcela small{ font-family:var(--mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:#6b6355; }
+.parcela .linha{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+.parcela strong{ font-family:var(--display); font-weight:800; font-size:min(4.4vw, 8.2vh); letter-spacing:-.05em; line-height:1; font-variant-numeric:tabular-nums; }
+.parcela .linha span{ font-size:12.5px; color:#6b6355; }
+.parcela .linha span b{ color:var(--tinta); }
+.parcela .linha i{ font-style:normal; margin-left:6px; padding:2px 6px; border-radius:2px; background:var(--mel-forte); color:#fff; font-family:var(--mono); font-size:10px; font-weight:600; }
+.urgencia{ display:flex; align-items:center; gap:22px; }
+.relogio{ display:flex; align-items:flex-start; gap:5px; }
+.relogio .bx{ display:flex; flex-direction:column; align-items:center; gap:4px; }
+.relogio .bx b{ display:grid; place-items:center; min-width:44px; height:clamp(36px, 5.4vh, 48px); padding:0 6px; border-radius:3px; background:var(--tinta); color:#fff;
+                font-family:var(--mono); font-size:19px; font-weight:600; font-variant-numeric:tabular-nums; }
+.relogio .bx small, .estoque small{ font-family:var(--mono); font-size:9px; letter-spacing:.16em; text-transform:uppercase; color:#6b6355; }
+.relogio .sep{ padding-top:clamp(8px, 1.4vh, 13px); font-family:var(--mono); font-weight:600; }
+.estoque{ flex:1; }
+.estoque i{ display:block; height:4px; border-radius:2px; background:rgba(23,20,15,.1); overflow:hidden; }
+.estoque i b{ display:block; height:100%; background:var(--mel-forte); }
+.estoque small{ display:block; margin-top:8px; } .estoque small b{ color:var(--mel-forte); }
+.garantir{ display:flex; align-items:center; justify-content:space-between; padding:clamp(13px, 2.3vh, 22px) 24px; border-radius:4px; background:var(--tinta); color:#fff; transition:background .2s, transform .2s; }
+.garantir:hover{ background:#2b261d; transform:translateY(-1px); }
+.garantir strong{ display:block; font-family:var(--display); font-size:clamp(17px, 1.6vw, 22px); font-weight:700; letter-spacing:-.02em; }
+.garantir small{ display:block; margin-top:4px; font-family:var(--mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase; opacity:.65; }
+.garantir > span{ display:grid; place-items:center; width:40px; height:40px; border-radius:3px; background:var(--mel); color:var(--tinta); }
+.garantias{ list-style:none; display:grid; grid-template-columns:repeat(4, 1fr); gap:14px; }
+.garantias li{ border-top:2px solid var(--tinta); padding-top:9px; }
+.garantias b{ display:block; font-size:13px; font-weight:600; }
+.garantias small{ font-size:11.5px; color:#6b6355; }
+
+@media (max-width:900px){
+  .preco{ height:auto; } .preco .pin{ position:relative; height:auto; display:block; overflow:visible; }
+  .pr-esq{ height:92vh; } .pr-titulo h2{ font-size:11vw; }
+  #pad{ top:52%; } .pr-dir{ padding:40px 24px 60px; gap:18px; } .pr-dir h2{ font-size:9vw; } .parcela strong{ font-size:12vw; }
+  .garantias{ grid-template-columns:repeat(2, 1fr); }
+}

@@ -1,0 +1,12 @@
+# Backup da versão antiga em arquivo único (o site agora é o index.html)
+apis-hero.html
+
+# Imagens originais em PNG (o site usa as versões otimizadas em media/locais/)
+media/image*.png
+
+# Arquivos de sistema e de ferramentas
+.DS_Store
+Thumbs.db
+desktop.ini
+node_modules/
+.vscode/

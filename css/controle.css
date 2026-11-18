@@ -1,0 +1,47 @@
+/* =====================================================================
+   2ª DOBRA · CONTROLE TOTAL · textos laterais, visão da câmera (vídeo) e HUD
+   ===================================================================== */
+
+.controle{ position:relative; z-index:10; height:500vh; }
+.lado{ --dx:0px; position:absolute; top:50%; transform:translate(var(--dx), -50%); opacity:0; will-change:transform, opacity; }
+.lado.esq{ left:calc(14px + 4vw); }
+.lado.dir{ right:calc(14px + 4vw); text-align:right; }
+.lado h2{ font-family:var(--display); font-weight:800; text-transform:lowercase; font-size:min(5.4vw, 10.5vh); line-height:.86; letter-spacing:-.06em;
+          text-shadow:0 2px 0 rgba(120,60,0,.06), 0 18px 44px rgba(150,75,0,.26); }
+.lado h2 em{ font-style:normal; color:var(--tinta); text-shadow:none; }
+.lado .kicker{ display:block; margin-bottom:20px; font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; }
+.lado .apoio{ max-width:310px; margin-top:22px; font-size:14.5px; line-height:1.5; font-weight:500; text-shadow:0 1px 10px rgba(150,75,0,.25); }
+.lado.dir .apoio{ margin-left:auto; }
+.lado .rolar{ display:inline-flex; align-items:center; gap:10px; margin-top:18px; padding:8px 12px; border-radius:4px; background:rgba(23,20,15,.82);
+              font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; }
+.lado .rolar i{ width:6px; height:6px; border-radius:50%; background:var(--mel); animation:pisca 1.2s infinite; }
+
+/* Visão da abelha: o vídeo só aparece dentro do furo da lente (clip-path calculado a cada quadro) */
+.visao{ position:fixed; inset:0; z-index:30; pointer-events:none; visibility:hidden; background:#000; }
+.visao video{ display:block; width:100%; height:100%; object-fit:cover; }
+.visao::after{ content:""; position:absolute; inset:0; background:radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(0,0,0,.45) 100%); }
+.hud{ position:fixed; inset:0; z-index:46; pointer-events:none; opacity:0; color:#fff; font-family:var(--mono); }
+.hud .canto{ position:absolute; width:38px; height:38px; border:2px solid rgba(255,255,255,.9); }
+.hud .c1{ left:5vw; top:15vh; border-right:0; border-bottom:0; } .hud .c2{ right:5vw; top:15vh; border-left:0; border-bottom:0; }
+.hud .c3{ left:5vw; bottom:11vh; border-right:0; border-top:0; } .hud .c4{ right:5vw; bottom:11vh; border-left:0; border-top:0; }
+.hud-topo{ position:absolute; left:calc(5vw + 54px); right:calc(5vw + 54px); top:calc(15vh + 10px); display:flex; justify-content:space-between; font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; text-shadow:0 1px 8px rgba(0,0,0,.5); }
+.hud .rec{ display:flex; align-items:center; gap:9px; font-weight:600; }
+.hud .rec i{ width:9px; height:9px; border-radius:50%; background:#ff3b2a; animation:pisca 1s infinite; }
+.hud .mira{ position:absolute; left:50%; top:50%; width:74px; height:74px; transform:translate(-50%,-50%); }
+.hud .mira::before, .hud .mira::after{ content:""; position:absolute; background:rgba(255,255,255,.85); }
+.hud .mira::before{ left:50%; top:0; bottom:0; width:1.5px; transform:translateX(-50%); -webkit-mask:linear-gradient(#000 0 34%, transparent 34% 66%, #000 66%); mask:linear-gradient(#000 0 34%, transparent 34% 66%, #000 66%); }
+.hud .mira::after{ top:50%; left:0; right:0; height:1.5px; transform:translateY(-50%); -webkit-mask:linear-gradient(90deg, #000 0 34%, transparent 34% 66%, #000 66%); mask:linear-gradient(90deg, #000 0 34%, transparent 34% 66%, #000 66%); }
+.hud .legenda{ position:absolute; left:50%; bottom:22vh; transform:translateX(-50%); opacity:0; white-space:nowrap; text-align:center; font-family:var(--display); font-weight:800;
+               text-transform:lowercase; font-size:min(5.2vw, 9.5vh); line-height:.9; letter-spacing:-.05em; text-shadow:0 4px 30px rgba(0,0,0,.45); }
+.hud .legenda em{ font-style:normal; color:var(--mel); }
+.hud-base{ position:absolute; left:calc(5vw + 54px); right:calc(5vw + 54px); bottom:calc(11vh + 10px); display:flex; justify-content:space-between; font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; text-shadow:0 1px 8px rgba(0,0,0,.5); }
+.hud-base b{ font-weight:600; color:var(--mel); }
+.hud .barra{ position:absolute; left:calc(5vw + 54px); right:calc(5vw + 54px); bottom:calc(11vh + 36px); height:2px; background:rgba(255,255,255,.28); }
+.hud .barra b{ display:block; height:100%; background:var(--mel); transform-origin:left center; transform:scaleX(0); }
+
+@media (max-width:900px){
+  .lado{ top:auto; left:50% !important; right:auto !important; width:calc(100% - 56px); text-align:center !important; transform:translate(calc(-50% + var(--dx)), 0); }
+  .lado.esq{ top:calc(14px + 84px); } .lado.dir{ bottom:calc(14px + 40px); }
+  .lado h2{ font-size:min(11vw, 7vh); } .lado .apoio{ display:none; } .lado .kicker{ margin-bottom:10px; }
+  .hud .legenda{ font-size:8.5vw; } .hud-topo span:last-child{ display:none; }
+}

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>APIS — Polinização com piloto</title>
+<meta name="description" content="A APIS é uma abelha robótica que voa flor a flor guiada por um controle remoto." />
+
+<!-- Fontes -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+
+<!-- Estilos: base e navegação primeiro, depois uma folha por dobra -->
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/nav.css" />
+<link rel="stylesheet" href="css/hero.css" />
+<link rel="stylesheet" href="css/controle.css" />
+<link rel="stylesheet" href="css/anatomia.css" />
+<link rel="stylesheet" href="css/onde-voa.css" />
+<link rel="stylesheet" href="css/prevenda.css" />
+<link rel="stylesheet" href="css/rodape.css" />
+
+<!-- Three.js via CDN (módulos ES) -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module" src="js/main.js"></script>
+</head>
+<body>
+
+<canvas id="fundo" aria-hidden="true"></canvas>
+<div class="moldura" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+<header class="nav">
+  <a class="logo" href="#" aria-label="APIS">
+    <svg viewBox="0 0 28 28" aria-hidden="true"><path d="M14 2.5 24 8.25v11.5L14 25.5 4 19.75V8.25Z" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M14 9.5 18 11.8v4.4L14 18.5 10 16.2v-4.4Z" fill="currentColor"/></svg>
+    APIS
+  </a>
+  <nav class="abas" aria-label="Principal">
+    <a class="on" href="#topo">Voo</a>
+    <a href="#controle">Controle</a>
+    <a href="#anatomia">Anatomia</a>
+    <a href="#onde-voa">Onde voa</a>
+    <a href="#preco">Pré-venda</a>
+  </nav>
+  <a class="acao" href="#demo">Agendar demo <b>↗</b></a>
+</header>
+
+<main>
+  <section class="hero" id="topo">
+
+    <h1 class="titulo" aria-label="Polinização com piloto.">
+      <span class="l1">polinização</span>
+      <span class="l2">com</span>
+      <span class="l3">pilot<em>o.</em></span>
+    </h1>
+
+    <div class="vert" aria-hidden="true">ALT <span id="vert-alt">1,2</span> M · APIS-01 · AO VIVO</div>
+
+    <div class="marca">
+      <div class="nome">
+        <svg viewBox="0 0 28 28" aria-hidden="true"><path d="M14 2.5 24 8.25v11.5L14 25.5 4 19.75V8.25Z" fill="none" stroke="#fff" stroke-width="2.4"/><path d="M14 9.5 18 11.8v4.4L14 18.5 10 16.2v-4.4Z" fill="#fff"/></svg>
+        APIS <b>01</b>
+      </div>
+      <p>Pilotar.<br>Polinizar.<br>Pousar.</p>
+    </div>
+
+    <div class="chamada">
+      <p>A APIS é uma abelha robótica que voa flor a flor guiada por um controle remoto. Mais frutos no seu pomar, menos dependência do acaso.</p>
+      <div class="ctas">
+        <a class="btn btn-tinta" href="#demo">Agendar uma demonstração <span class="seta"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <a class="btn btn-linha" href="#pilotos">Quero ser piloto</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- 2ª dobra: a abelha para no centro, o zoom entra no ocelo (câmera) e o vídeo avança com o scroll -->
+  <section class="controle" id="controle">
+    <div class="pin">
+      <div class="lado esq" id="lado-esq">
+        <span class="kicker">02 · Controle total</span>
+        <h2>controle<br>total<em>.</em></h2>
+        <p class="apoio">Pelo app ou pelo joystick APIS, você vê o que a abelha vê e decide para onde ela vai.</p>
+      </div>
+      <div class="lado dir" id="lado-dir">
+        <h2>polinize<br>em qualquer<br>lugar<em>.</em></h2>
+        <p class="apoio">O sistema cuida do equilíbrio e do vento. Você cuida da flor.</p>
+        <span class="rolar"><i></i>Role para entrar na visão dela</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3ª dobra: a abelha se desmonta no centro e cada peça ganha um card -->
+  <section class="anatomia" id="anatomia">
+    <div class="pin">
+      <div class="orbita" aria-hidden="true"></div>
+      <svg class="fios" id="fios" aria-hidden="true"></svg>
+      <header class="ana-topo">
+        <span class="kicker">03 — Anatomia</span>
+        <h2>Inspirada na abelha.<br><em>Projetada para o campo.</em></h2>
+        <p>Role para desmontar a APIS peça por peça.</p>
+      </header>
+      <div class="col esq">
+        <article class="spec" data-ancora="lente"><span class="n">01 · Câmera</span><h3>1080p ao vivo · &lt;100 ms</h3><p>Câmera frontal que transmite o voo ao vivo para o controle remoto.</p></article>
+        <article class="spec" data-ancora="olho"><span class="n">02 · Visão de flor</span><h3>Até 400 flores por voo</h3><p>Sensores que reconhecem flores abertas e indicam quais ainda não foram visitadas.</p></article>
+        <article class="spec" data-ancora="asaEsq"><span class="n">03 · Asas</span><h3>4 asas flexíveis</h3><p>Pairam sobre a flor sem amassar pétalas.</p></article>
+      </div>
+      <div class="col dir">
+        <article class="spec" data-ancora="antena"><span class="n">04 · Antenas</span><h3>Vento até 20 km/h</h3><p>Medem vento e umidade e ajustam o voo antes da rajada chegar.</p></article>
+        <article class="spec" data-ancora="abdomen"><span class="n">05 · Energia</span><h3>25 min · recarga em 15</h3><p>Bateria de troca rápida, recarregada automaticamente no favo de pouso.</p></article>
+        <article class="spec" data-ancora="polen"><span class="n">06 · Coleta</span><h3>Cerdas + cesto de pólen</h3><p>Cerdas macias prendem o pólen de uma flor e o entregam na próxima.</p></article>
+      </div>
+      <div class="peso"><strong>38<sup>g</sup></strong><span>Peso de decolagem</span></div>
+      <!-- celular: uma peça destacada por vez -->
+      <svg class="fio-mob" aria-hidden="true"><path id="fio-mob-p" fill="none" stroke="rgba(23,20,15,.35)" stroke-width="1" stroke-dasharray="3 4"/></svg>
+      <div class="ana-mob" id="ana-mob" aria-live="polite"><div class="conteudo" id="am-conteudo"><span class="n" id="am-n"></span><h3 id="am-h"></h3><p id="am-p"></p></div><div class="am-dots" id="am-dots"></div></div>
+      <div class="progresso"><span>Vista explodida</span><i><b id="exp-barra"></b></i><span id="exp-pct">0%</span></div>
+    </div>
+  </section>
+
+  <!-- 4ª dobra: lugares onde a APIS poliniza, em scroll horizontal -->
+  <section class="ondevoa" id="onde-voa">
+    <div class="pin">
+      <div class="trilho" id="trilho">
+        <div class="ov-texto">
+          <span class="kicker">04 — Onde voa</span>
+          <h2>Onde tem flor,<br><em>tem voo.</em></h2>
+          <p>Pomar, estufa, campo aberto ou horta: se a flor está aberta, a APIS chega até ela. Estes são alguns lugares onde ela pode trabalhar.</p>
+          <span class="seguir">Continue rolando <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+        <figure class="local">
+          <div class="foto"><img src="media/locais/pomar-maca.jpg" alt="Flor de macieira aberta em um pomar" decoding="async"></div>
+          <figcaption><b>01</b><div><h3>Pomares de maçã</h3><small>Campo aberto · Florada curta, cada dia conta</small></div></figcaption>
+        </figure>
+        <figure class="local">
+          <div class="foto"><img src="media/locais/estufa-morango.jpg" alt="Flor de morango dentro de uma estufa" decoding="async"></div>
+          <figcaption><b>02</b><div><h3>Estufas de morango</h3><small>Ambiente fechado · Onde polinizadores quase não chegam</small></div></figcaption>
+        </figure>
+        <figure class="local">
+          <div class="foto"><img src="media/locais/girassol.jpg" alt="Girassol em close em um campo de girassóis" decoding="async"></div>
+          <figcaption><b>03</b><div><h3>Campos de girassol</h3><small>Campo aberto · Grandes áreas, flor a flor</small></div></figcaption>
+        </figure>
+        <figure class="local">
+          <div class="foto"><img src="media/locais/abobora.jpg" alt="Flor de abóbora aberta em uma horta" decoding="async"></div>
+          <figcaption><b>04</b><div><h3>Hortas de abóbora</h3><small>Horta · Flores que abrem por poucas horas</small></div></figcaption>
+        </figure>
+        <article class="local cta">
+          <div><span class="n">05 · Sua lavoura</span><h3>Onde é o próximo voo?</h3><p>Conte qual é a sua cultura e quando começa a florada. A gente prepara o plano de voo.</p></div>
+          <a class="btn-mel2" href="#demo">Agendar uma demonstração <span><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        </article>
+      </div>
+      <div class="linha-tempo"><span>Decolagem</span><i><b id="lt-prog"></b></i><span id="lt-cont">01 / 05</span></div>
+    </div>
+  </section>
+
+  <!-- 5ª dobra: pré-venda. A abelha paira sobre uma flor 3D e deixa cair pólen -->
+  <section class="preco" id="preco">
+    <div class="pin">
+      <div class="pr-esq">
+        <div class="pr-titulo">
+          <h2>Pronta para pousar no seu pomar<em>.</em></h2>
+          <p>A pré-venda da APIS está aberta. Escolha seu kit e garanta a primeira florada.</p>
+        </div>
+        <div id="pad" aria-hidden="true"></div>
+      </div>
+      <div class="pr-dir">
+        <span class="kicker">05 — Pré-venda</span>
+        <h2>Seu kit de voo</h2>
+        <div class="kits" role="radiogroup" aria-label="Escolha seu kit">
+          <button class="kit on" data-kit="essencial" role="radio" aria-checked="true"><div><b>Essencial</b><small>1 APIS, favo de pouso e controle remoto</small></div><span data-preco></span></button>
+          <button class="kit" data-kit="pomar" role="radio" aria-checked="false"><div><b>Pomar</b><small>3 APIS, 2 favos de pouso e mapa de florada</small></div><span data-preco></span><em class="selo-kit">Recomendado</em></button>
+          <button class="kit" data-kit="frota" role="radio" aria-checked="false"><div><b>Frota</b><small>6 APIS, 3 favos, pilotos da rede e 1 ano de suporte</small></div><span data-preco></span></button>
+        </div>
+        <div class="parcela">
+          <small id="pr-vezes">12x sem juros</small>
+          <div class="linha"><strong id="pr-parcela">R$ 582,50</strong><span>ou <b id="pr-pix">R$ 6.640,50</b> no Pix <i id="pr-desc">-5%</i></span></div>
+        </div>
+        <div class="urgencia">
+          <div class="relogio" aria-label="Tempo até o fim da pré-venda">
+            <div class="bx"><b id="rl-d">00</b><small>Dias</small></div><span class="sep">:</span>
+            <div class="bx"><b id="rl-h">00</b><small>Horas</small></div><span class="sep">:</span>
+            <div class="bx"><b id="rl-m">00</b><small>Min</small></div><span class="sep">:</span>
+            <div class="bx"><b id="rl-s">00</b><small>Seg</small></div>
+          </div>
+          <div class="estoque"><i><b id="est-barra"></b></i><small id="est-txt"></small></div>
+        </div>
+        <a class="garantir" href="#demo"><div><strong>Garantir minha APIS</strong><small id="pr-sub">Essencial · Pré-venda</small></div>
+          <span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        <ul class="garantias">
+          <li><b>Frete grátis</b><small>com seguro total</small></li>
+          <li><b>30 dias</b><small>para devolver</small></li>
+          <li><b>2 anos</b><small>de garantia</small></li>
+          <li><b>Pagamento</b><small>100% seguro</small></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Rodapé: frase de fechamento, marca gigante e links -->
+<footer class="rodape" id="rodape">
+  <div class="rd-topo">
+    <h2>Cada flor, no tempo certo.<br><em>Agora é a sua vez.</em></h2>
+    <a class="rd-btn" href="#preco">Garantir a minha <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+  <div class="rd-marca" aria-hidden="true">
+    <svg viewBox="0 0 1000 280" preserveAspectRatio="xMidYMid meet"><text id="rd-texto" x="0" y="262" font-size="340" textLength="1000" lengthAdjust="spacingAndGlyphs">APIS</text></svg>
+  </div>
+  <div class="rd-base">
+    <span>© 2026 APIS · Todos os direitos reservados</span>
+    <nav aria-label="Rodapé"><a href="#">Para produtores</a><span>·</span><a href="#">Para pilotos</a><span>·</span><a href="#">Contato</a><span>·</span><a href="#">Privacidade</a></nav>
+    <a href="#topo" id="voltar-topo">Voltar ao topo ↑</a>
+  </div>
+  <div class="rd-vert" aria-hidden="true">Pilotar · Polinizar · Pousar</div>
+</footer>
+
+<div class="visao" id="visao" aria-hidden="true">
+  <video id="video" muted playsinline preload="auto" disablepictureinpicture></video>
+</div>
+<div class="hud" id="hud" aria-hidden="true">
+  <span class="canto c1"></span><span class="canto c2"></span><span class="canto c3"></span><span class="canto c4"></span>
+  <div class="hud-topo"><span class="rec"><i></i>REC · Visão da APIS</span><span>Cam frontal · 1080p · 60 fps</span></div>
+  <div class="mira"></div>
+  <p class="legenda" id="leg1">você vê o que ela vê<em>.</em></p>
+  <p class="legenda" id="leg2">e escolhe a próxima <em>flor.</em></p>
+  <div class="barra"><b id="hud-barra"></b></div>
+  <div class="hud-base"><span>Flor <b id="hud-flor">147</b></span><span id="hud-tempo">00:00</span><span>Alt 1,2 m</span></div>
+</div>
+
+<span class="alvo" id="alvo" aria-hidden="true"></span>
+<div class="dica" id="dica" aria-hidden="true"><i></i>Clique na abelha para uma pirueta</div>
+
+</body>
+</html>
