@@ -7,6 +7,11 @@ import { VOO } from '../config.js';
 import { fmt } from '../util/math.js';
 
 const dicaEl = document.getElementById('dica');
+// em telas de toque, a dica fala em "toque" em vez de "clique"
+if (matchMedia('(hover: none)').matches){
+  const txt = [...dicaEl.childNodes].find(n => n.nodeType === Node.TEXT_NODE && n.nodeValue.trim());
+  if (txt) txt.nodeValue = 'Toque na abelha para uma pirueta';
+}
 const vertAlt = document.getElementById('vert-alt');
 let dicaPronta = false, dicaVis = -1, altTxt = '';
 

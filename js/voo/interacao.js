@@ -40,8 +40,17 @@ export function ligarInteracao(){
     ponteiro.sobre = !sobreUi && state.lens < .01 && hitBee(e.clientX, e.clientY);
     document.documentElement.style.cursor = ponteiro.sobre ? 'pointer' : '';
   });
-  addEventListener('click', e => {
-    if (e.target.closest('a, button')) return;
+  // toque/clique curto e parado em cima da abelha = pirueta.
+  // (o evento "click" não dispara no iPhone em áreas que não são botão/link, por isso usamos pointerdown/up)
+  let toque = null;
+  addEventListener('pointerdown', e => { toque = { x:e.clientX, y:e.clientY, t:performance.now() }; }, { passive:true });
+  addEventListener('pointercancel', () => { toque = null; });     // virou rolagem
+  addEventListener('pointerup', e => {
+    if (!toque) return;
+    const rapido = performance.now() - toque.t < 600, parado = Math.hypot(e.clientX - toque.x, e.clientY - toque.y) < 12;
+    toque = null;
+    if (!rapido || !parado) return;
+    if (e.target.closest && e.target.closest('a, button')) return;
     if (hitBee(e.clientX, e.clientY)) piruetaComPolen();
   });
 }
